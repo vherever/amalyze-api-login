@@ -1,4 +1,10 @@
 <h1>Dashboard</h1>
+
+<div class="data-error-container" *ngIf="dataErrors && dataErrors.length">An error(s) occurred during the data
+  access: ({{dataErrors.join('; ')}})
+</div>
+<br>
+
 <div *ngIf="loading">Loading...</div>
 
 <h3 *ngIf="!loading && user">Welcome, {{ user.firstname }} {{ user.lastname }} [{{ user.username }}]</h3>

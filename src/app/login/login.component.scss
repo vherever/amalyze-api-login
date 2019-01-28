@@ -1,4 +1,9 @@
 :host {
+  font-family: Helvetica, sans-serif;
+  .data-error-container {
+    font-size: 13px;
+    color: #e74c3c;
+  }
   button {
     &:disabled {
       background-color: #e2e2e2;
@@ -6,5 +11,8 @@
   }
   .captcha {
     height: 78px;
+  }
+  .data-error-container {
+
   }
 }

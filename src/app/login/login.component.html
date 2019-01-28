@@ -1,4 +1,10 @@
 <h1>Login to your account</h1>
+
+<div class="data-error-container" *ngIf="dataErrors && dataErrors.length">An error(s) occurred during the data
+  access: ({{dataErrors.join('; ')}})
+</div>
+<br>
+
 <form [formGroup]="loginForm" (submit)="handleLogin()">
   <div>
     <input type="text" formControlName="email" placeholder="*Email" required />
@@ -21,8 +27,8 @@
   <input type="hidden" formControlName="captcha">
   <div class="captcha">
     <re-captcha (resolved)="captchaResolved($event)"
-                siteKey="6LcKNEIUAAAAAPGe3VDGzUcqXyi5iyMD-IPhiXej"
-                data-theme="dark"></re-captcha>
+                siteKey="{{ captcha.sitekey }}"
+                data-theme="{{ captcha.theme }}"></re-captcha>
   </div>
   <br>
 

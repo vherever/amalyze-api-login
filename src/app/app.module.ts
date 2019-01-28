@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -10,6 +10,14 @@ import {AuthGuard} from './services/auth-guard.service';
 import {AppAuthInterceptor} from './services/auth-interceptor.service';
 import {DashboardService} from './services/dashboard/dashboard.service';
 import {DashboardApiService} from './services/dashboard/dashboard-api.service';
+import {ConfigService} from './services/config.service';
+import {ConfigGetterService} from './services/config-getter.service';
+
+const appInitializerFn = (config: ConfigService) => {
+  return () => {
+    return config.loadAppConfig();
+  };
+};
 
 @NgModule({
   declarations: [
@@ -28,7 +36,15 @@ import {DashboardApiService} from './services/dashboard/dashboard-api.service';
       multi: true
     },
     {provide: LoginService, useClass: LoginApiService},
-    {provide: DashboardService, useClass: DashboardApiService}
+    {provide: DashboardService, useClass: DashboardApiService},
+    ConfigService,
+    ConfigGetterService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [ConfigService]
+    }
   ],
   bootstrap: [AppComponent]
 })

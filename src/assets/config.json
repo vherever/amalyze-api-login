@@ -1,0 +1,11 @@
+{
+  "apiUrl": "https://falcon.amalyze.com/0.2.2/",
+  "dev_credentials": {
+    "email": "developertest2@amalyze.com",
+    "password": "oM9uolee"
+  },
+  "captcha": {
+    "sitekey": "6LcKNEIUAAAAAPGe3VDGzUcqXyi5iyMD-IPhiXej",
+    "theme": "dark"
+  }
+}

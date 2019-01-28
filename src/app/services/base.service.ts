@@ -2,15 +2,16 @@ import {Injectable} from '@angular/core';
 import {Observable, throwError, TimeoutError} from 'rxjs';
 import {HttpErrorResponse} from '@angular/common/http';
 import {AppError} from '../models/error.model';
+import {ConfigGetterService} from './config-getter.service';
 
 @Injectable()
 export abstract class BaseService {
-  constructor() {
 
+  constructor(protected configGetterService: ConfigGetterService) {
   }
 
   protected getApiUrl(path: string): string {
-    return `https://falcon.amalyze.com/0.2.2/${path}`;
+    return `${this.configGetterService.apiUrl}/${path}`;
   }
 
   protected handleHttpError<T>(fallbackData?: any): any {
@@ -45,7 +46,7 @@ export abstract class BaseService {
       // common errors processing
 
       if (error.status === 0) {
-        friendlyError.message = 'It seems like the server is down. Please, try again later ';
+        friendlyError.message = 'It seems like the server is down. Please, try again later';
 
       } else {
 

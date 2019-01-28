@@ -4,11 +4,13 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {Md5} from 'ts-md5/dist/md5';
+import {ConfigGetterService} from '../config-getter.service';
 
 @Injectable()
 export class LoginApiService extends LoginService {
-  constructor(protected http: HttpClient) {
-    super();
+  constructor(protected http: HttpClient,
+              protected configGetterService: ConfigGetterService) {
+    super(configGetterService);
   }
 
   fetchAuthToken(email: string, password: string, captcha: string): Observable<any> {
