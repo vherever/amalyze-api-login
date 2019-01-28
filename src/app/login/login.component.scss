@@ -1,0 +1,10 @@
+:host {
+  button {
+    &:disabled {
+      background-color: #e2e2e2;
+    }
+  }
+  .captcha {
+    height: 78px;
+  }
+}

@@ -1,0 +1,5 @@
+<h1>Dashboard</h1>
+<div *ngIf="loading">Loading...</div>
+
+<h3 *ngIf="!loading && user">Welcome, {{ user.firstname }} {{ user.lastname }} [{{ user.username }}]</h3>
+<div *ngIf="!loading && user">{{ user | json }}</div>

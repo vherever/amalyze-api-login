@@ -1,0 +1,35 @@
+<h1>Login to your account</h1>
+<form [formGroup]="loginForm" (submit)="handleLogin()">
+  <div>
+    <input type="text" formControlName="email" placeholder="*Email" required />
+    <div *ngIf="email.hasError('required') && (email.dirty || email.touched)">Email is required.</div>
+    <div *ngIf="email.hasError('email')">Email is no correct.</div>
+  </div>
+  <br>
+
+  <div>
+    <input type="text" formControlName="password" placeholder="*Password" required />
+    <div *ngIf="password.hasError('required') && (password.dirty || password.touched)">Password is required.</div>
+  </div>
+  <br>
+
+  <div>
+    <button type="button" (click)="useDefaultsClick()">Use dev credentials</button>
+  </div>
+
+  <br>
+  <input type="hidden" formControlName="captcha">
+  <div class="captcha">
+    <re-captcha (resolved)="captchaResolved($event)"
+                siteKey="6LcKNEIUAAAAAPGe3VDGzUcqXyi5iyMD-IPhiXej"
+                data-theme="dark"></re-captcha>
+  </div>
+  <br>
+
+  <div>
+    <button type="submit" [disabled]="loginForm.invalid || loading">Submit</button>
+  </div>
+</form>
+
+<br>
+<div *ngIf="loading">Loading...</div>
